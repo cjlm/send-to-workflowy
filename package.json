@@ -9,7 +9,7 @@
     "core"
   ],
   "scripts": {
-    "build": "cd app && npm run build"
+    "build": "cd app && yarn run build"
   },
   "repository": {
     "type": "git",
