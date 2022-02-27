@@ -1,5 +1,4 @@
 const WorkflowyClient = require('./index');
-require('dotenv').config();
 
 const capture = async ({ sessionId, parentId, text, note, priority } = {}) => {
   try {
