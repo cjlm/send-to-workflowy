@@ -2,7 +2,7 @@ const uuidv4 = require('uuid/v4');
 
 const utils = require('./utils');
 
-const { Readable } = require('stream');
+const { Readable } = require('@foxify/stream');
 const { FormData } = require('formdata-node');
 const { FormDataEncoder } = require('form-data-encoder');
 const fetch = require('node-fetch');
