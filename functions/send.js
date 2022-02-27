@@ -1,4 +1,4 @@
-const { capture } = require('../../core/capture');
+const { capture } = require('../core/capture');
 
 export async function onRequestPost(request) {
   const body = await request.json();
