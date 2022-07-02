@@ -6,7 +6,8 @@
     "start": "vite",
     "build": "vite build",
     "server": "vite preview",
-    "dev": "netlify dev",
+    "dev-netlify": "netlify dev",
+    "dev": "wrangler pages dev --node-compat -- yarn run start",
     "bookmarklet": "esbuild --minify bookmarklet/bookmarklet.js --outfile=bookmarklet.min.js"
   },
   "devDependencies": {
