@@ -5,7 +5,7 @@ export async function onRequest(context) {
   return await send(request, env);
 }
 
-async function send(request) {
+async function send(request, env) {
   const body = await request.json();
 
   const { text = '', note = '', priority = 0, ...rest } = body;
