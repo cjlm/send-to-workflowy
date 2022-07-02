@@ -45,7 +45,7 @@ export default function CaptureForm(props) {
     setStatus('loading');
 
     try {
-      const response = await fetch('/send', {
+      const response = await fetch(process.env.SEND_URL || '/send', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
