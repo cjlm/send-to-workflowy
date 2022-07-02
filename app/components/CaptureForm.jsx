@@ -46,7 +46,7 @@ export default function CaptureForm(props) {
 
     try {
       const response = await fetch(
-        'send-to-workflowy.cjlm.workers.dev', //hardcode for now
+        'https://send-to-workflowy.cjlm.workers.dev', //hardcode for now
         {
           method: 'POST',
           headers: {
