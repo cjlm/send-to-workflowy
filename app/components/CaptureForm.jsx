@@ -49,13 +49,13 @@ export default function CaptureForm(props) {
         'https://send-to-workflowy.cjlm.workers.dev',
         {
           method: 'POST',
-          mode: 'no-cors',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ text, note, sessionId, parentId, priority }),
         }
       );
+      console.log(response);
       if (response.ok) {
         setStatus('success');
 
