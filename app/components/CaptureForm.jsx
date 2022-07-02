@@ -45,13 +45,16 @@ export default function CaptureForm(props) {
     setStatus('loading');
 
     try {
-      const response = await fetch('/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text, note, sessionId, parentId, priority }),
-      });
+      const response = await fetch(
+        'send-to-workflowy.cjlm.workers.dev', //hardcode for now
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ text, note, sessionId, parentId, priority }),
+        }
+      );
       if (response.ok) {
         setStatus('success');
 
