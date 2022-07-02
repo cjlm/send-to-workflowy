@@ -47,7 +47,6 @@ export default function CaptureForm(props) {
     try {
       const response = await fetch('/send', {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
