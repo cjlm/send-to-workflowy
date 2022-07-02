@@ -123,16 +123,16 @@ program
   .command('meta')
   .description('meta')
   .action(async () => {
-    const wf = await initialize();
     console.log('⦿ fetching workflowy data');
     try {
       const {
         projectTreeData: {
-          auxiliaryProjectTreeInfos,
           mainProjectTreeInfo: { rootProjectChildren },
         },
         settings: { username },
-      } = await wf.meta();
+      } = (await initialize()).metadata;
+
+      const wf = await initialize();
 
       console.log(`logged in as ${username}`);
       console.log(`${rootProjectChildren.length} top-level nodes`);

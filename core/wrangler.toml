@@ -1,0 +1,6 @@
+name = "send-to-workflowy"
+usage_model = 'bundled'
+compatibility_flags = []
+workers_dev = true
+compatibility_date = "2022-02-27"
+node_compat = true

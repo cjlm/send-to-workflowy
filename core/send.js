@@ -1,8 +1,12 @@
 const { capture } = require('../core/capture');
+addEventListener('fetch', (event) => {
+  event.respondWith(handleRequest(event.request));
+});
 
-export async function onRequestPost(request) {
+export async function handleRequest(request) {
   const body = await request.json();
-  const { text = '', note = '', priority = 0, ...rest } = JSON.parse(body);
+  console.log(body);
+  const { text = '', note = '', priority = 0, ...rest } = body;
 
   let { parentId, sessionId } = rest;
 
