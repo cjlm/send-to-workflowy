@@ -23,26 +23,15 @@ async function send(request) {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTION',
+    'Content-Type': 'text/plain',
   };
 
   try {
     console.log('trying');
     await capture({ parentId, sessionId, text, note, priority });
-    // return {
-    //   headers,
-    //   statusCode: 200,
-    //   body: 'Sent!',
-    // };
-    return new Response('Sent!');
+    return new Response('Sent!', { headers });
   } catch (err) {
     console.log(err);
-    // return {
-    //   headers,
-    //   statusCode: 500,
-    //   body: `Error ${err.status}:${err.message}`,
-    // };
-    return new Response('Failed!');
+    return new Response('Failed!', { headers });
   }
-
-  return new Response(`Hello world`);
 }
