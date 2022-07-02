@@ -292,7 +292,6 @@ module.exports = class WorkflowyClient {
       },
     ];
     await this._update(operations);
-    console.log('did update work');
     return { id: projectid };
   }
   async update(nodes, newNames) {
