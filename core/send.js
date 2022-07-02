@@ -47,11 +47,11 @@ async function send(request) {
     let { parentId, sessionId } = rest;
 
     if (!parentId || parentId.length === 0) {
-      parentId = process.env.PARENTID;
+      parentId = PARENTID;
     }
 
     if (!sessionId || sessionId.length === 0) {
-      sessionId = process.env.SESSIONID;
+      sessionId = SESSIONID;
     }
 
     let response;
