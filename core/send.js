@@ -5,6 +5,7 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
   'Access-Control-Max-Age': '86400',
 };
+
 function handleOptions(request) {
   console.log('handling options');
   let headers = request.headers;
@@ -30,12 +31,6 @@ function handleOptions(request) {
     });
   }
 }
-
-addEventListener('fetch', (event) => {
-  event.respondWith(
-    send(event.request).catch((err) => new Response(err.stack, { status: 500 }))
-  );
-});
 
 async function send(request) {
   if (request.method === 'OPTIONS') {
@@ -66,3 +61,9 @@ async function send(request) {
   }
   return response;
 }
+
+addEventListener('fetch', (event) => {
+  event.respondWith(
+    send(event.request).catch((err) => new Response(err.stack, { status: 500 }))
+  );
+});
