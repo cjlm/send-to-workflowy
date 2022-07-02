@@ -1,11 +1,12 @@
-const { capture } = require('../core/capture');
+import { capture } from '../core/capture';
+
 addEventListener('fetch', (event) => {
-  event.respondWith(handleRequest(event.request));
+  return event.respondWith(send(event.request));
 });
 
-export async function handleRequest(request) {
+async function send(request) {
   const body = await request.json();
-  console.log(body);
+
   const { text = '', note = '', priority = 0, ...rest } = body;
 
   let { parentId, sessionId } = rest;
@@ -25,6 +26,7 @@ export async function handleRequest(request) {
   };
 
   try {
+    console.log('trying');
     await capture({ parentId, sessionId, text, note, priority });
     // return {
     //   headers,
@@ -33,6 +35,7 @@ export async function handleRequest(request) {
     // };
     return new Response('Sent!');
   } catch (err) {
+    console.log(err);
     // return {
     //   headers,
     //   statusCode: 500,

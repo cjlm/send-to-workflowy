@@ -23,18 +23,6 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@foxify/events@^1.1.3":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@foxify/events/-/events-1.1.4.tgz#039b5b66f617a7b199a82748443ef054f3f9c63e"
-  integrity sha512-iZOulGd1h4d+4XoZvB72iqQpgh1hkhFKEtpmfG3Dbkx13lJRAeZTpDq6/a1bGb6wsOPArHfJqPAmG0TM+5BV0A==
-
-"@foxify/stream@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@foxify/stream/-/stream-1.0.1.tgz#65d090ab6dce3cb1e2f0d6cf70c0f9e650bbad1a"
-  integrity sha512-ed8zdQ08Gxp4t0rZ/HcckmgtL5xHe0j4y2ZBEEnkziDUxQwHw/4ikrPztJzoOBaE1nHfmyRgWi8BN62uQoUnBg==
-  dependencies:
-    "@foxify/events" "^1.1.3"
-
 "@iarna/toml@2.2.5":
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
@@ -785,10 +773,10 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-form-data-encoder@^1.4.3:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/form-data-encoder/-/form-data-encoder-1.7.1.tgz#ac80660e4f87ee0d3d3c3638b7da8278ddb8ec96"
-  integrity sha512-EFRDrsMm/kyqbTQocNvRXMLjc7Es2Vk+IQFx/YW7hkUH1eBl4J1fqiP34l74Yt0pFLCNpc06fkbVk00008mzjg==
+form-data-encoder@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/form-data-encoder/-/form-data-encoder-1.5.0.tgz#ff505f04cde8c220f1c003e49b96f8709aa7a0de"
+  integrity sha512-0s05voYuN2FWoOlDntig77vKadmkLg3M+jGBe70HDxMCRh8ujKUfAaz4XUejhK5UCzDNt4C0tU1wT07uJ7bXKQ==
 
 form-data@4.0.0:
   version "4.0.0"
@@ -799,10 +787,10 @@ form-data@4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-formdata-node@^4.0.0:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/formdata-node/-/formdata-node-4.3.2.tgz#0262e94931e36db7239c2b08bdb6aaf18ec47d21"
-  integrity sha512-k7lYJyzDOSL6h917favP8j1L0/wNyylzU+x+1w4p5haGVHNlP58dbpdJhiCUsDbWsa9HwEtLp89obQgXl2e0qg==
+formdata-node@4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/formdata-node/-/formdata-node-4.3.3.tgz#21415225be66e2c87a917bfc0fedab30a119c23c"
+  integrity sha512-coTew7WODO2vF+XhpUdmYz4UBvlsiTMSNaFYZlrXIqYbFd4W7bMwnoALNLE6uvNgzTg2j1JDF0ZImEfF06VPAA==
   dependencies:
     node-domexception "1.0.0"
     web-streams-polyfill "4.0.0-beta.1"

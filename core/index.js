@@ -2,7 +2,8 @@ const uuidv4 = require('uuid/v4');
 
 const utils = require('./utils');
 
-const { Readable } = require('@foxify/stream');
+const { Readable } = require('stream');
+
 const { FormData } = require('formdata-node');
 const { FormDataEncoder } = require('form-data-encoder');
 const fetch = require('node-fetch');
@@ -148,14 +149,11 @@ module.exports = class WorkflowyClient {
     form.set('push_poll_id', utils.makePollId());
     form.set('push_poll_data', pushPollData);
 
-    const encoder = new FormDataEncoder(form);
-
     try {
       const response = await fetch(URLS.update, {
         method: 'POST',
-        body: Readable.from(encoder),
+        body: form,
         headers: {
-          ...encoder.headers,
           Cookie: `sessionid=${this.sessionid}`,
         },
       });
@@ -294,6 +292,7 @@ module.exports = class WorkflowyClient {
       },
     ];
     await this._update(operations);
+    console.log('did update work');
     return { id: projectid };
   }
   async update(nodes, newNames) {
