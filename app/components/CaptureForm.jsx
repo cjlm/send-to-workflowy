@@ -56,7 +56,7 @@ export default function CaptureForm(props) {
           body: JSON.stringify({ text, note, sessionId, parentId, priority }),
         }
       );
-      if (response.ok || response.type === 'opaque') {
+      if (response.ok) {
         setStatus('success');
 
         resetText();
