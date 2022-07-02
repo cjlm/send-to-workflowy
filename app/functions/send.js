@@ -1,37 +1,42 @@
-import { capture } from '../core/capture';
+const { capture } = require('../../core/capture');
 
-export async function onRequest(context) {
-  const { request, env } = context;
-  return await send(request, env);
-}
+exports.handler = async (event, context) => {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
 
-async function send(request, env) {
-  const body = await request.json();
-
-  const { text = '', note = '', priority = 0, ...rest } = body;
+  const { text = '', note = '', priority = 0, ...rest } = JSON.parse(
+    event.body
+  );
 
   let { parentId, sessionId } = rest;
 
   if (!parentId || parentId.length === 0) {
-    parentId = env.PARENTID;
+    parentId = process.env.PARENTID;
   }
 
   if (!sessionId || sessionId.length === 0) {
-    sessionId = env.SESSIONID;
+    sessionId = process.env.SESSIONID;
   }
 
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTION',
-    'Content-Type': 'text/plain',
   };
 
   try {
     await capture({ parentId, sessionId, text, note, priority });
-    return new Response('Sent!', { headers });
+    return {
+      headers,
+      statusCode: 200,
+      body: 'Sent!',
+    };
   } catch (err) {
-    console.log(err);
-    return new Response('Failed!', { headers });
+    return {
+      headers,
+      statusCode: 500,
+      body: `Error ${err.status}:${err.message}`,
+    };
   }
-}
+};
