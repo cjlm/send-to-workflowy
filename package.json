@@ -9,7 +9,8 @@
     "core"
   ],
   "scripts": {
-    "build": "cd app && yarn run build"
+    "build": "cd app && yarn run build",
+    "function": "wrangler pages dev ./app/dist --node-compat"
   },
   "repository": {
     "type": "git",
