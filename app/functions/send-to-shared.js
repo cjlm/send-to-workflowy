@@ -19,21 +19,36 @@ async function addItem(url, { text, note, priority = 0 }) {
 
   const page = await browser.newPage();
 
-  let response = await page.goto(url, { waitUntil: ['load', 'networkidle2'] });
+  await page.setRequestInterception(true);
+  page.on('request', (request) => {
+    if (
+      !request.url().includes('workflowy.com') ||
+      request.url().includes('.css') ||
+      request.url().endsWith('.ico')
+    ) {
+      request.abort();
+    } else {
+      request.continue();
+    }
+  });
+
+  let response = await page.goto(url);
   await page.waitForSelector('.pageContainer');
 
-  await page.evaluate(
+  const id = await page.evaluate(
     (text = '', note = '', priority = 0) => {
       let item = WF.createItem(WF.rootItem(), priority);
       WF.setItemName(item, text);
       WF.setItemNote(item, note);
+      return item.data.item.item.item.item.id;
     },
     text,
     note,
     priority
   );
 
-  await page.waitForTimeout(500);
+  await page.waitForSelector(`[projectid="${id}"]`);
+  await page.waitForTimeout(500); // truly not sure why this is necessary
   await browser.close();
 }
 
@@ -69,7 +84,7 @@ async function handler(event, context) {
     console.log('Error', error);
 
     return {
-      statusCode: 200,
+      statusCode: 503,
       headers,
     };
   }
