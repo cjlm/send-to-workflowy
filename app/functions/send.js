@@ -33,6 +33,8 @@ exports.handler = async (event, context) => {
 
   try {
     if (mode === 'simple') {
+      console.log(JSON.stringify(process.env));
+      console.log(`${process.env.DEPLOY_URL}/send-to-shared`);
       await fetch(`${process.env.DEPLOY_URL}/send-to-shared`, {
         method: 'POST',
         body: JSON.stringify(body),
