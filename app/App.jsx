@@ -31,6 +31,7 @@ function App() {
   } = useInput('', 'sharedNode');
 
   const [top, setTop] = useLocalStorage('addToTop', true);
+  const [mode, setMode] = useLocalStorage('mode', 'simple');
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -44,6 +45,8 @@ function App() {
     sharedNode,
     bindSharedNode,
     setSharedNode,
+    mode,
+    setMode,
     top,
     setTop,
     onClose,
@@ -79,6 +82,7 @@ function App() {
             sessionId={sessionId}
             parentId={parentId}
             sharedNode={sharedNode}
+            mode={mode}
             top={top}
           />
         </Box>

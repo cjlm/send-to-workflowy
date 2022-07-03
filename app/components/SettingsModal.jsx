@@ -20,8 +20,14 @@ import IntegrationIcons from './IntegrationIcons';
 import ConfirmClear from './ConfirmClear';
 
 export default function SettingsModal(props) {
-  const { sessionId, parentId, onClose, isOpen, setSessionId, setParentId } =
-    props;
+  const {
+    sessionId,
+    parentId,
+    onClose,
+    isOpen,
+    setSessionId,
+    setParentId,
+  } = props;
   const [scrollBehavior] = useState('inside');
 
   const clear = () => {
@@ -41,7 +47,6 @@ export default function SettingsModal(props) {
       size={'sm'}
       isOpen={isOpen}
       scrollBehavior={scrollBehavior}
-      isCentered
     >
       <ModalOverlay />
       <ModalContent>

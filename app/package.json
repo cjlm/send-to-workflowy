@@ -13,8 +13,10 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.2",
     "esbuild": "^0.12.24",
+    "netlify-cli": "^6.14.16",
     "vite": "^2.6.3",
-    "netlify-cli": "^6.14.16"
+    "chrome-aws-lambda": "^10.1.0",
+    "puppeteer-core": "^10.1.0"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.15",

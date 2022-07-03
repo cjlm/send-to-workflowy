@@ -10,7 +10,7 @@ import { Input, Textarea, Box, Collapse } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 
 export default function CaptureForm(props) {
-  const { parentId, sessionId, sharedNode, top } = props;
+  const { parentId, sessionId, mode, sharedNode, top } = props;
 
   const priority = top ? 0 : 10000000;
 
@@ -42,9 +42,10 @@ export default function CaptureForm(props) {
 
   const doFetch = async (options) => {
     const { sessionId, parentId, sharedNode } = options;
-    const url = sharedNode
-      ? 'https://api-send-to-workflowy.netlify.app'
-      : 'https://send-to-workflowy.cjlm.workers.dev';
+    const url =
+      mode === 'simple'
+        ? '/send-to-shared'
+        : 'https://send-to-workflowy.cjlm.workers.dev';
 
     const headers = sharedNode ? {} : { 'Content-Type': 'application/json' };
 
@@ -65,6 +66,15 @@ export default function CaptureForm(props) {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     setStatus('loading');
+
+    if (mode === 'simple' && !sharedNode) {
+      setStatus('error');
+      showToast(
+        'No Workflowy shared node provided, please check your configuration',
+        'error'
+      );
+      return;
+    }
 
     try {
       const response = await doFetch({

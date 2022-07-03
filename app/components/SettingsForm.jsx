@@ -20,15 +20,35 @@ import { ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons';
 import SensitiveInput from './SensitiveInput';
 
 export default function SettingsForm(props) {
-  const { bindSessionId, bindParentId, bindSharedNode, top, setTop } = props;
+  const {
+    bindSessionId,
+    bindParentId,
+    bindSharedNode,
+    mode,
+    setMode,
+    top,
+    setTop,
+  } = props;
+
+  const tabs = ['simple', 'advanced'];
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
   };
+
+  const handleTabsChange = (index) => {
+    setMode(tabs[index]);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Tabs size="sm" variant="soft-rounded">
+        <Tabs
+          size="sm"
+          variant="soft-rounded"
+          index={tabs.indexOf(mode)}
+          onChange={handleTabsChange}
+        >
           <TabList>
             <Tab>Simple</Tab>
             <Tab>Advanced</Tab>
@@ -36,10 +56,10 @@ export default function SettingsForm(props) {
           <TabPanels>
             <TabPanel>
               <FormControl id="shared-node-url">
-                <FormLabel>Shared URL:</FormLabel>
+                <FormLabel>Shared node:</FormLabel>
                 <Input type="text" fontSize="0.9em" {...bindSharedNode} />
                 <FormHelperText>
-                  Send to a shared WorkFlowy node by providing it's URL.
+                  Provide the URL of a shared WorkFlowy node.
                 </FormHelperText>
               </FormControl>
             </TabPanel>
