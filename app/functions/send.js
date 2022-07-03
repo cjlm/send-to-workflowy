@@ -31,16 +31,14 @@ exports.handler = async (event, context) => {
     'Access-Control-Allow-Methods': 'POST, OPTION',
   };
 
-  console.log(mode);
-
   try {
     if (mode === 'simple') {
       await fetch(
         `https://next--send-to-workflowy.netlify.app/send-to-shared`,
+        // `${process.env.URL}/send-to-shared`,
         {
-          // await fetch(`${process.env.URL}/send-to-shared`, {
           method: 'POST',
-          body: JSON.stringify(body),
+          body: JSON.stringify({ text, note, url, priority }),
         }
       );
     } else {
