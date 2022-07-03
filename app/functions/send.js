@@ -5,7 +5,7 @@ exports.handler = async (event, context) => {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  const {
+  let {
     text = '',
     note = '',
     priority = 0,
