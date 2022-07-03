@@ -41,9 +41,9 @@ export default function CaptureForm(props) {
   };
 
   const doFetch = async (options) => {
-    const { sessionId, parentId, sharedNode } = options;
+    const { sessionId, parentId, sharedNode, mode } = options;
 
-    let body = { text, note, priority };
+    let body = { text, note, priority, mode };
 
     if (mode === 'simple') {
       body.url = sharedNode;
@@ -79,6 +79,7 @@ export default function CaptureForm(props) {
         parentId,
         priority,
         sharedNode,
+        mode,
       });
       if (response.ok) {
         setStatus('success');
