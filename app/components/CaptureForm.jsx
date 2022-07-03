@@ -76,7 +76,7 @@ export default function CaptureForm(props) {
         text,
         note,
         sessionId,
-        parent,
+        parentId,
         priority,
         sharedNode,
       });
