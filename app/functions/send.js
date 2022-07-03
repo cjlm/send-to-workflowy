@@ -5,11 +5,15 @@ exports.handler = async (event, context) => {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  const { text = '', note = '', priority = 0, ...rest } = JSON.parse(
-    event.body
-  );
-
-  let { parentId, sessionId } = rest;
+  const {
+    text = '',
+    note = '',
+    priority = 0,
+    parentId,
+    sessionId,
+    mode,
+    url,
+  } = JSON.parse(event.body);
 
   if (!parentId || parentId.length === 0) {
     parentId = process.env.PARENTID;
@@ -26,7 +30,14 @@ exports.handler = async (event, context) => {
   };
 
   try {
-    await capture({ parentId, sessionId, text, note, priority });
+    if (mode === 'simple') {
+      await fetch('/send-to-shared', {
+        method: 'POST',
+        body: JSON.stringify(body),
+      });
+    } else {
+      await capture({ parentId, sessionId, text, note, priority });
+    }
     return {
       headers,
       statusCode: 200,

@@ -42,24 +42,19 @@ export default function CaptureForm(props) {
 
   const doFetch = async (options) => {
     const { sessionId, parentId, sharedNode } = options;
-    const url =
-      mode === 'simple'
-        ? '/send-to-shared'
-        : 'https://send-to-workflowy.cjlm.workers.dev';
 
-    const headers = sharedNode ? {} : { 'Content-Type': 'application/json' };
+    let body = { text, note, priority };
 
-    return fetch(url, {
+    if (mode === 'simple') {
+      body.url = sharedNode;
+    } else if (mode === 'advanced') {
+      body = { ...body, sessionId, parentId };
+    }
+
+    return fetch('/send', {
       method: 'POST',
-      headers,
-      body: JSON.stringify({
-        text,
-        note,
-        sessionId,
-        parentId,
-        priority,
-        url: sharedNode,
-      }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
     });
   };
 
