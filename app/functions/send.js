@@ -36,6 +36,7 @@ exports.handler = async (event, context) => {
         body: JSON.stringify(body),
       });
     } else {
+      console.log({ parentId, sessionId, text, note, priority });
       await capture({ parentId, sessionId, text, note, priority });
     }
     return {
