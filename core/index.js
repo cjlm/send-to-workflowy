@@ -149,11 +149,14 @@ module.exports = class WorkflowyClient {
     form.set('push_poll_id', utils.makePollId());
     form.set('push_poll_data', pushPollData);
 
+    const encoder = new FormDataEncoder(form);
+
     try {
       const response = await fetch(URLS.update, {
         method: 'POST',
-        body: form,
+        body: Readable.from(encoder),
         headers: {
+          ...encoder.headers,
           Cookie: `sessionid=${this.sessionid}`,
         },
       });
