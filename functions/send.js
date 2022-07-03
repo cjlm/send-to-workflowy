@@ -1,5 +1,3 @@
-import { capture } from '../core/capture';
-
 export async function onRequest(context) {
   const { request, env } = context;
   return await send(request, env);
