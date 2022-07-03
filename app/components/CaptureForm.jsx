@@ -10,7 +10,7 @@ import { Input, Textarea, Box, Collapse } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 
 export default function CaptureForm(props) {
-  const { parentId, sessionId, top } = props;
+  const { parentId, sessionId, sharedNode, top } = props;
 
   const priority = top ? 0 : 10000000;
 
@@ -40,21 +40,41 @@ export default function CaptureForm(props) {
     }
   };
 
+  const doFetch = async (options) => {
+    const { sessionId, parentId, sharedNode } = options;
+    const url = sharedNode
+      ? 'https://api-send-to-workflowy.netlify.app'
+      : 'https://send-to-workflowy.cjlm.workers.dev';
+
+    const headers = sharedNode ? {} : { 'Content-Type': 'application/json' };
+
+    return fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        text,
+        note,
+        sessionId,
+        parentId,
+        priority,
+        url: sharedNode,
+      }),
+    });
+  };
+
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     setStatus('loading');
 
     try {
-      const response = await fetch(
-        'https://send-to-workflowy.cjlm.workers.dev', //hardcode for now
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ text, note, sessionId, parentId, priority }),
-        }
-      );
+      const response = await doFetch({
+        text,
+        note,
+        sessionId,
+        parent,
+        priority,
+        sharedNode,
+      });
       if (response.ok) {
         setStatus('success');
 

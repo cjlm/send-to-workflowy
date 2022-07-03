@@ -17,11 +17,19 @@ function App() {
     bind: bindSessionId,
     setValue: setSessionId,
   } = useInput('', 'sessionId');
+
   const {
     value: parentId,
     bind: bindParentId,
     setValue: setParentId,
   } = useInput('', 'parentId');
+
+  const {
+    value: sharedNode,
+    bind: bindSharedNode,
+    setValue: setSharedNode,
+  } = useInput('', 'sharedNode');
+
   const [top, setTop] = useLocalStorage('addToTop', true);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,6 +41,9 @@ function App() {
     parentId,
     bindParentId,
     setParentId,
+    sharedNode,
+    bindSharedNode,
+    setSharedNode,
     top,
     setTop,
     onClose,
@@ -64,7 +75,12 @@ function App() {
         </Flex>
 
         <Box my={4} textAlign="left">
-          <CaptureForm sessionId={sessionId} parentId={parentId} top={top} />
+          <CaptureForm
+            sessionId={sessionId}
+            parentId={parentId}
+            sharedNode={sharedNode}
+            top={top}
+          />
         </Box>
         <SettingsModal {...modalProps} />
       </Box>
