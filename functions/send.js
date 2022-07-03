@@ -4,8 +4,6 @@ export async function onRequest(context) {
 }
 
 async function send(request, env) {
-  const isSimple = body.mode === 'simple';
-
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
