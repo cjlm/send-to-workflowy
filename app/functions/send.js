@@ -33,7 +33,7 @@ exports.handler = async (event, context) => {
 
   try {
     if (mode === 'simple') {
-      await fetch('/send-to-shared', {
+      await fetch(`${process.env.DEPLOY_URL}/send-to-shared`, {
         method: 'POST',
         body: JSON.stringify(body),
       });
@@ -46,10 +46,12 @@ exports.handler = async (event, context) => {
       body: 'Sent!',
     };
   } catch (err) {
+    const error = `Error ${err.status}:${err.message}`;
+    console.log(error);
     return {
       headers,
       statusCode: 500,
-      body: `Error ${err.status}:${err.message}`,
+      body: error,
     };
   }
 };
