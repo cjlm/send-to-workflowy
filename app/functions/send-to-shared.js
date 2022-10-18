@@ -40,7 +40,7 @@ async function addItem(url, { text, note, priority = 0 }) {
       let item = WF.createItem(WF.rootItem(), priority);
       WF.setItemName(item, text);
       WF.setItemNote(item, note);
-      return item.data.item.item.item.item.id;
+      return item.data.id;
     },
     text,
     note,
@@ -48,7 +48,7 @@ async function addItem(url, { text, note, priority = 0 }) {
   );
 
   await page.waitForSelector(`[projectid="${id}"]`);
-  await page.waitForTimeout(500); // truly not sure why this is necessary
+  await page.waitForTimeout(2000); // truly not sure why this is necessary
   await browser.close();
 }
 

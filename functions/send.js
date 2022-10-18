@@ -16,7 +16,7 @@ async function send(request, env) {
     const isSimple = body.mode === 'simple';
 
     const url = isSimple
-      ? `https://next--send-to-workflowy.netlify.app/send-to-shared`
+      ? `https://send-to-workflowy.fly.dev/send`
       : 'https://send-to-workflowy.cjlm.workers.dev';
 
     await fetch(url, {
