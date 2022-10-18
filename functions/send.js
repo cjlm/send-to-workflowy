@@ -21,7 +21,7 @@ async function send(request, env) {
 
     await fetch(url, {
       method: 'POST',
-      headers: isSimple ? {} : { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
 
