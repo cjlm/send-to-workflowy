@@ -33,14 +33,10 @@ exports.handler = async (event, context) => {
 
   try {
     if (mode === 'simple') {
-      await fetch(
-        `https://next--send-to-workflowy.netlify.app/send-to-shared`,
-        // `${process.env.URL}/send-to-shared`,
-        {
-          method: 'POST',
-          body: JSON.stringify({ text, note, url, priority }),
-        }
-      );
+      await fetch('https://send-to-workflowy.fly.dev/send', {
+        method: 'POST',
+        body: JSON.stringify({ text, note, url, priority }),
+      });
     } else {
       await capture({ parentId, sessionId, text, note, priority });
     }
